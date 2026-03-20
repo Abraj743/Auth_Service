@@ -73,6 +73,26 @@ class UserService {
 
             
         }
+
+       
+    }
+
+    async isAuthenticated (token) {
+        try {
+               const response = this.verifyToken(token);
+               console.log("response",response);
+               const user = await this.userRepository.getById(response.id);
+               if(!user){
+                throw {error:'No user with the corresponding token exists'};
+               }
+
+               return user.id;
+
+        } catch (error) {
+            console.log("Something went wrong while checking authentication of user at service layer",error);
+            throw error;
+        }
+            
     }
 
 }

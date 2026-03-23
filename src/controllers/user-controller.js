@@ -13,7 +13,7 @@ const create = async (req,res) => {
          return res.status(201).json({data:response,err:{},success:true,message:"Created the user successfully"})
    } catch (error) {
       console.log(error);
-      return res.status(500).json({data:{},err:error,success:false,message:"Not able to create a user"})
+      return res.status(error.statusCode).json({data:{},err:error.explanation,success:false,message:error.message})
    }
 }
 

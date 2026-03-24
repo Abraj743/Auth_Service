@@ -23,7 +23,7 @@ const signIn = async (req,res) =>{
         return res.status(200).json({data:response,err:{},success:true,message:"Successfully sign in the user"})
    } catch (error) {
       console.log(error);
-      return res.status(500).json({data:{},err:error,success:false,message:"Not able to sign in"})
+      return res.status(error.statusCode).json({data:{},err:error.explanation,success:false,message:error.message})
       
    }
 
